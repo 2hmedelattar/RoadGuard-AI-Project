@@ -2,7 +2,7 @@ from .validator import is_valid_speed, is_valid_bounding_box, is_valid_status, i
 
 class Vehicle:
 
-    def __init__(self, vehicle_id, vehicle_type, bounding_box):
+    def __init__(self, vehicle_id: int, vehicle_type: str, bounding_box: tuple[int | float, int | float, int | float, int | float]) -> None:
 
         # Main attributes for any vehicle in our system
         if is_valid_id(vehicle_id):
@@ -21,30 +21,30 @@ class Vehicle:
             raise ValueError("Invalid bounding box: X2 must be greater than X1 and Y2 must be greater than Y1")
 
         # Initialize speed and movement status as not yet measured or analyzed
-        self._current_speed = None
-        self._status = None
+        self._current_speed: int | float | None = None
+        self._status: str | None = None
 
     @property
-    def vehicle_id(self):
+    def vehicle_id(self) -> int:
         return self._vehicle_id
 
     @property
-    def vehicle_type(self):
+    def vehicle_type(self) -> str:
         return self._vehicle_type
 
     @property
-    def bounding_box(self):
+    def bounding_box(self) -> tuple[int | float, int | float, int | float, int | float]:
         return self._bounding_box
 
     @property
-    def current_speed(self):
+    def current_speed(self) -> int | float | None:
         return self._current_speed
 
     @property
-    def status(self):
+    def status(self) -> str | None:
         return self._status
 
-    def update_speed(self, new_speed):
+    def update_speed(self, new_speed: int | float | None) -> None:
 
         # Updating vehicle speed with the new speed
         if new_speed is None:
@@ -54,7 +54,7 @@ class Vehicle:
         else:
             raise ValueError("Invalid speed")
 
-    def update_status(self, new_status):
+    def update_status(self, new_status: str) -> None:
 
         # Updating vehicle status with the new status
         if is_valid_status(new_status):
@@ -62,7 +62,7 @@ class Vehicle:
         else:
             raise ValueError("Invalid status: status must be one of these (\"unknown\", \"moving\", \"stationary\")")
 
-    def update_bounding_box(self, new_bounding_box):
+    def update_bounding_box(self, new_bounding_box: tuple[int | float, int | float, int | float, int | float]) -> None:
 
         # Updating vehicle bounding box with the new bounding box
         if is_valid_bounding_box(new_bounding_box):
@@ -70,7 +70,7 @@ class Vehicle:
         else:
             raise ValueError("Invalid bounding box: X2 must be greater than X1 and Y2 must be greater than Y1")
 
-    def update_vehicle_type(self, new_vehicle_type):
+    def update_vehicle_type(self, new_vehicle_type: str) -> None:
         if is_valid_vehicle_type(new_vehicle_type):
             self._vehicle_type = new_vehicle_type
         else:

@@ -28,3 +28,39 @@
 - `python -m`
 - `sys.path`
 - `__file__`
+
+## Type Hints and Runtime Validation
+
+- Type Hints describe the expected types of variables, parameters, and return values.
+- Python does not enforce Type Hints at runtime.
+- Static Type Checkers detect potential type errors before execution.
+- Runtime Validation checks actual input values during execution.
+- `float | None` represents a value that can be either a float or None.
+- `None` means no measurement is currently available, while `0.0` is a valid measurement.
+- `-> None` indicates that a function does not return a meaningful value.
+- Validators use `object` when they need to inspect inputs of unknown types.
+- `isinstance()` helps verify runtime types and supports type narrowing.
+
+### Key Concepts
+- Type Hints
+- Union Types
+- Static Type Checking
+- Runtime Validation
+- Type Narrowing
+- Return Type
+- Optional Values
+
+### Static Type Checking with mypy
+
+- mypy is a static type checker for Python.
+- Static Type Checking detects potential type errors without executing the application.
+- Type Inference allows tools to infer variable types from assigned values.
+- Variable Annotations explicitly declare expected variable types.
+- Union Types allow variables to hold multiple possible types.
+- Initializing a variable with `None` may require an explicit Union Type.
+- `python -m mypy vehicle` checks the vehicle package.
+- A successful mypy check does not guarantee runtime correctness.
+
+### Development Dependencies
+
+- mypy is a development dependency because it supports code quality checks rather than application runtime functionality.
