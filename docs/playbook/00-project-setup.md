@@ -1,4 +1,4 @@
-## What we did 
+## What we did
 - Created a Git repository and verified its configuration.
 - Added a `.gitignore` file to exclude unnecessary files.
 - Installed standalone Python 3.12.10.
