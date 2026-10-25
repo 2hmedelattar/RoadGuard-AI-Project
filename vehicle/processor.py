@@ -1,4 +1,7 @@
 from .validator import is_valid_speed, is_valid_bounding_box, is_valid_status, is_valid_id, is_valid_vehicle_type
+import logging
+
+logger = logging.getLogger("roadguard.vehicle.processor")
 
 class Vehicle:
 
@@ -49,9 +52,25 @@ class Vehicle:
         # Updating vehicle speed with the new speed
         if new_speed is None:
             self._current_speed = None
+            logger.warning(
+                "Vehicle speed measurement unavailable | vehicle_id = %s | current_speed = %s",
+                self._vehicle_id,
+                self._current_speed
+            )
         elif is_valid_speed(new_speed):
             self._current_speed = new_speed
+            logger.info(
+                "Vehicle speed updated | vehicle_id = %s | speed = %s",
+                self._vehicle_id,
+                new_speed
+            )
         else:
+            logger.error(
+                "Vehicle speed is invalid | vehicle_id = %s | received_speed = %r | current_speed = %s",
+                self._vehicle_id,
+                new_speed,
+                self._current_speed
+            )
             raise ValueError("Invalid speed")
 
     def update_status(self, new_status: str) -> None:
