@@ -5,6 +5,9 @@ def configure_logging() -> None:
     logger = logging.getLogger("roadguard")
     logger.setLevel(logging.INFO)
 
+    if logger.handlers:
+        return
+
     formatter = logging.Formatter(
         "%(asctime)s | %(levelname)s | %(message)s"
     )
