@@ -1,5 +1,12 @@
 import pytest
-from vehicle.validator import is_valid_id, is_valid_vehicle_type, is_valid_speed, is_valid_bounding_box
+
+from vehicle.validator import (
+    is_valid_bounding_box,
+    is_valid_id,
+    is_valid_speed,
+    is_valid_vehicle_type,
+)
+
 
 @pytest.mark.parametrize(
     "vehicle_id, expected",
@@ -10,10 +17,11 @@ from vehicle.validator import is_valid_id, is_valid_vehicle_type, is_valid_speed
         (1.5, False),
         ("15", False),
         (True, False),
-    ]
+    ],
 )
 def test_is_valid_id(vehicle_id, expected):
     assert is_valid_id(vehicle_id) is expected
+
 
 @pytest.mark.parametrize(
     "vehicle_type, expected",
@@ -25,11 +33,12 @@ def test_is_valid_id(vehicle_id, expected):
         ("unknown", True),
         ("bicycle", False),
         ("", False),
-        (15, False)
-    ]
+        (15, False),
+    ],
 )
 def test_is_valid_vehicle_type(vehicle_type, expected):
     assert is_valid_vehicle_type(vehicle_type) is expected
+
 
 @pytest.mark.parametrize(
     "vehicle_speed, expected",
@@ -42,11 +51,12 @@ def test_is_valid_vehicle_type(vehicle_type, expected):
         ("50", False),
         (0, True),
         (50.05, True),
-        (True, False)
-    ]
+        (True, False),
+    ],
 )
 def test_is_valid_speed(vehicle_speed, expected):
     assert is_valid_speed(vehicle_speed) is expected
+
 
 @pytest.mark.parametrize(
     "bounding_box, expected",
@@ -60,8 +70,8 @@ def test_is_valid_speed(vehicle_speed, expected):
         ((10, 20, 100), False),
         ([10, 20, 100, 200], False),
         ((10, 20, True, 200), False),
-        ((10, 20, float("nan"), 200), False)
-    ]
+        ((10, 20, float("nan"), 200), False),
+    ],
 )
 def test_is_valid_bounding_box(bounding_box, expected):
     assert is_valid_bounding_box(bounding_box) is expected

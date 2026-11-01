@@ -1,5 +1,6 @@
 import logging
 
+
 def configure_logging() -> None:
 
     logger = logging.getLogger("roadguard")
@@ -8,9 +9,7 @@ def configure_logging() -> None:
     if logger.handlers:
         return
 
-    formatter = logging.Formatter(
-        "%(asctime)s | %(levelname)s | %(message)s"
-    )
+    formatter = logging.Formatter("%(asctime)s | %(levelname)s | %(message)s")
 
     # System Handler
     system_handler = logging.FileHandler("logs/system.log")
